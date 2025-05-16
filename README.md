@@ -47,7 +47,7 @@ End-to-end threat hunt using Microsoft Defender for Endpoint and KQL to detect u
 
 <details>
   <summary>🛠️ <strong>STIG Remediation Lab (DISA Hardening & Compliance)</strong> – Coming Soon  
-  <br><img src="https://img.shields.io/badge/Status-Coming%20Soon-yellow" /> <img src="https://img.shields.io/badge/Tool-PowerShell-blue" /> <img src="https://img.shields.io/badge/Framework-DISA_STIG-red" /></summary>
+  <br><img src="https://img.shields.io/badge/Status-Coming%20Soon-yellow" /> <img src="https://img.shields.io/badge/Automation-PowerShell-blue" /> <img src="https://img.shields.io/badge/Tool-Tenable-blue" /> <img src="https://img.shields.io/badge/Platform-Azure-blue" /> <img src="https://img.shields.io/badge/Framework-DISA_STIG-red" /></summary>
 
 This lab will simulate real-world DISA STIG compliance scenarios. Using Tenable scans with DISA/STIG templates on Azure-hosted VMs, the project focuses on identifying failed controls and applying remediations via PowerShell. Remediation efforts will be tracked using an experience log. The lab may also explore manually triggered vulnerabilities based on Tenable plugin IDs, followed by scripted hardening techniques. Ideal for building hands-on compliance and system hardening experience.
 
