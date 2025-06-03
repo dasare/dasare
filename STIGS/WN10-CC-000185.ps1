@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    This PowerShell script ensures that Autorun is disabled on all drive types by setting the NoDriveTypeAutoRun registry value to 0xFF.
+   This PowerShell script ensures that the default Autorun behavior is set to “Do not execute any autorun commands” by creating a NoAutorun = 1 DWORD.
 
 .NOTES
     Author          : Daniel Asare
@@ -20,30 +20,27 @@
     PowerShell Ver. : 
 
 .USAGE
-    Put any usage instructions here.
     Example syntax:
-    PS C:\> .\__remediation_template(STIG-ID-WN10-CC-000185).ps1 
+    PS C:\> .\WN10-CC-000185.ps1 
 #>
 # -------------------------------------------------------------------
-# DISA STIG: WN10-CC-000185 – Prevent default Autorun behavior
-# Synopsis:  Ensures that Autorun is disabled on all drive types by setting 
-#            NoDriveTypeAutoRun = 0xFF under HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer
+# DISA STIG: WN10-CC-000185 – The default Autorun behavior must be configured to prevent execution of any Autorun commands
 # -------------------------------------------------------------------
 
 # 1. Define the registry path and desired value
-$regPath   = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-$valueName = 'NoDriveTypeAutoRun'
-$valueData = 0x000000FF   # 0xFF disables Autorun on all drive types
+$regPath   = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
+$valueName = 'NoAutorun'
+$valueData = 1    # 1 = Do not execute any autorun commands :contentReference[oaicite:1]{index=1}
 
 # 2. Create the Policies\Explorer key if it doesn’t exist
 if (-not (Test-Path -Path $regPath)) {
-    New-Item -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies' `
+    New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies' `
              -Name 'Explorer' `
              -Force | Out-Null
 }
 
-# 3. Create or overwrite the NoDriveTypeAutoRun DWORD to 0xFF
-Write-Host "Disabling Autorun (NoDriveTypeAutoRun = 0xFF)..." 
+# 3. Create or overwrite the NoAutorun DWORD to 1
+Write-Host "Setting NoAutorun = 1 to prevent any Autorun commands..."
 New-ItemProperty -Path $regPath `
                  -Name $valueName `
                  -PropertyType DWord `
@@ -53,7 +50,7 @@ New-ItemProperty -Path $regPath `
 # 4. Confirm the new setting
 $confirmed = Get-ItemProperty -Path $regPath -Name $valueName -ErrorAction SilentlyContinue
 if ($null -ne $confirmed) {
-    Write-Host ( "NoDriveTypeAutoRun is now set to 0x{0:X2}" -f $confirmed.NoDriveTypeAutoRun )
+    Write-Host ("NoAutorun is now set to {0}" -f $confirmed.NoAutorun)
 } else {
-    Write-Host "ERROR: Failed to read back NoDriveTypeAutoRun from $regPath"
+    Write-Host "ERROR: Failed to create or read back NoAutorun under $regPath"
 }
