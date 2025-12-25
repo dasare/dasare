@@ -54,8 +54,8 @@ This lab will simulate real-world DISA STIG compliance scenarios. Using Tenable 
 </details>
 
 <details>
-  <summary>🔐 <strong>Active Directory & Identity Lab</strong> – Coming Soon  
-  <br><img src="https://img.shields.io/badge/Status-Coming%20Soon-yellow" /> <img src="https://img.shields.io/badge/Tool-Azure_AD-blue" /></summary>
+  <summary>🔐 <strong><a href="https://github.com/dasare/ActiveDirectoryProject">Active Directory Lab</strong> – In Progress  
+  <br><img src="https://img.shields.io/badge/Status-Coming%20Soon-yellow" /> <img src="https://img.shields.io/badge/Automation-PowerShell-blue" /></summary>
 
 Will simulate an on-prem Active Directory and Azure hybrid setup, including group policies, user provisioning, SSO, and RBAC configurations.
 
